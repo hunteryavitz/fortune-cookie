@@ -4,10 +4,10 @@
     "slug": "fortune-cookie",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/fortuneCookie01.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/fortuneCookie01.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/fortuneCookie01.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [],
+      "package": "com.hunteryavitz.fortunecookie"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/fortuneCookie01.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b1cc8891-7f54-4ca9-8303-eb9a78dc0471"
+      }
     }
   }
 }
