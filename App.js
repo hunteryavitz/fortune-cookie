@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-import { Audio } from "expo-av";
-import * as Haptics from 'expo-haptics';
-
+import { useState, useRef } from "react"
+import * as Haptics from 'expo-haptics'
 import {
     StyleSheet,
     Text,
@@ -11,76 +9,55 @@ import {
 } from 'react-native';
 
 const fortunes = [
-    'Your homemade meals are the tastiest - Your love',
-    'I love that you give our chickens a good life - Penelope',
-    'I love how artistic and creative you are - Ramona',
-    'Your gifts are always so thoughtful - Penelope',
-    'I love how adventurous you are when cooking and crafting - Ramona',
-    'I love the aromas and flavors you fill our home with - Your love',
-    'Movie nights are my favorite - Penelope',
-    'Game nights are my favorite - Ramona',
-    'I love how you create memories for your family - Your love',
-    'Don\'t ever forget you\'re my inspiration - Ramona',
-    'Don\'t ever forget you\'re my happiness - Penelope',
-    'Don\'t ever forget you\'re my everything - Your love',
-    'I love to draw with you - Penelope',
-    'I love to paint with you - Ramona',
-    'I love to joke with you - Your love',
-    'I love to cook with you - Penelope',
-    'I love to bake with you - Ramona',
-    'I love to be with you - Your love',
-    'I love to collect eggs with you - Penelope',
-    'I love to sew with you - Ramona',
-    'I love to build our lives together - Your love'
+    '',
+    '',
+    ''
 ]
-
-const fortuneCookieCrunchSound = new Audio.Sound()
-const fortuneCookieBagSound = new Audio.Sound()
 
 export default function App() {
     const [showCookie, setShowCookie] = useState(false)
     const [fortune, setFortune] = useState('help yourself to some fortune cookies for the heart')
-    const [caption, setCaption] = useState('')
+    const [caption, setCaption] = useState('LONG PRESS BAG FOR COOKIE')
+    const [isGettingCookie, setIsGettingCookie] = useState(false)
+    const hapticInterval = useRef(null)
 
-    useEffect( () => {
-        const loadAudio = async () => {
-            await fortuneCookieBagSound.loadAsync(require('./assets/sounds/fortuneCookieBag03.mp3'))
+    const startHapticFeedback = () => {
+        setIsGettingCookie(true)
+        console.log(isGettingCookie)
+        setCaption('DIG DEEP...')
+        hapticInterval.current = setInterval(() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
                 .then(() => {
-                    console.log('fortuneCookieBag sound loaded')
+                    console.log('haptic feedback')
                 })
                 .catch((error) => {
-                    console.log('error loading fortuneCookieBag sound', error)
+                    console.log('error haptic feedback', error)
                 })
-            await fortuneCookieCrunchSound.loadAsync(require('./assets/sounds/fortuneCookieCrunch01.mp3'))
-                .then(() => {
-                    console.log('fortuneCookieCrunch sound loaded')
-                })
-                .catch((error) => {
-                    console.log('error loading fortuneCookieCrunch sound', error)
-                })
-        }
+        }, 10)
+    }
 
-        loadAudio()
-            .then(() => console.log('all audio loaded'))
-            .catch((error) => console.log('error loading audio', error))
-
-        setCaption('LONG PRESS BAG FOR COOKIE')
-    }, [])
+    const stopHapticFeedback = () => {
+        setIsGettingCookie(false)
+        clearInterval(hapticInterval.current)
+    }
 
     const handleBagLongPress = async () => {
+        startHapticFeedback()
         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-        await fortuneCookieBagSound.replayAsync()
     }
 
     const handleBagLongPressOut = async () => {
-        await fortuneCookieBagSound.stopAsync()
+        stopHapticFeedback()
         setShowCookie(true)
-        setCaption('BREAK COOKIE FOR FORTUNE')
+        setCaption('TAP COOKIE FOR FORTUNE')
+    }
+
+    const handleBagOnPressIn = async () => {
+        stopHapticFeedback()
     }
 
     const handleCookiePress = async () => {
         await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-        await fortuneCookieCrunchSound.replayAsync()
         const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)]
         setFortune(randomFortune)
         setCaption('')
@@ -117,7 +94,8 @@ export default function App() {
                     </Text>
                     <TouchableOpacity
                         onLongPress={handleBagLongPress}
-                        onPressOut={handleBagLongPressOut}>
+                        onPressOut={handleBagLongPressOut}
+                        onPressIn={handleBagOnPressIn}>
                         <Image
                             source={require('./assets/fortuneCookieBag04.png')}
                             style={styles.fortuneCookieBag} />

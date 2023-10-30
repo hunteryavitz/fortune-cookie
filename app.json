@@ -12,7 +12,7 @@
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*", "assets/sounds/*"
     ],
     "ios": {
       "supportsTablet": true
@@ -22,7 +22,6 @@
         "foregroundImage": "./assets/fortuneCookie01.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": [],
       "package": "com.hunteryavitz.fortunecookie"
     },
     "web": {
