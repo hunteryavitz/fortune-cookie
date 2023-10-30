@@ -9,9 +9,8 @@ import {
 } from 'react-native';
 
 const fortunes = [
-    '',
-    '',
-    ''
+    // add your own fortunes here
+    'hmm... looks like there aren\'t any fortunes yet',
 ]
 
 export default function App() {

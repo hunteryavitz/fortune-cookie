@@ -7,8 +7,8 @@ Here's some info to get you started quickly.
 
 ### Adding Fortunes
 
-Update the `App.js` by modifying the `fortunes` array.  Simply add any number of new strings to the array to serve as
-fortunes.
+Update the `App.js` by modifying the `fortunes` string array.  Simply add any number of new strings to the array to 
+serve as your fortunes.
 
 ### Update Dependencies
 
