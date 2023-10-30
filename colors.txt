@@ -1,0 +1,5 @@
+#FADEBD light pink tan
+#FAE4B7 yellow tan
+#FAF3B0 baby yellow
+#FF1900 red
+#FAB195 orange tan
