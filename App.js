@@ -9,9 +9,36 @@ import {
 } from 'react-native';
 
 const fortunes = [
-    // add your own fortunes here
-    'hmm... looks like there aren\'t any fortunes yet',
+    'Your homemade meals are the tastiest - Your love',
+    'I love that you give our chickens a good life - Penelope',
+    'I love how artistic and creative you are - Ramona',
+    'Your gifts are always so thoughtful - Penelope',
+    'I love how adventurous you are when cooking and crafting - Ramona',
+    'I love the aromas and flavors you fill our home with - Your love',
+    'Movie nights are my favorite - Penelope',
+    'Game nights are my favorite - Ramona',
+    'I love how you create memories for your family - Your love',
+    'Don\'t ever forget you\'re my inspiration - Ramona',
+    'Don\'t ever forget you\'re my happiness - Penelope',
+    'Don\'t ever forget you\'re my everything - Your love',
+    'I love to draw with you - Penelope',
+    'I love to paint with you - Ramona',
+    'I love to joke with you - Your love',
+    'I love to cook with you - Penelope',
+    'I love to bake with you - Ramona',
+    'I love to be with you - Your love',
+    'I love to collect eggs with you - Penelope',
+    'I love to sew with you - Ramona',
+    'I love to build our lives together - Your love',
+    'Our snuggles are my heart and home - Penelope',
+    'Our talks mean the world to me - Ramona',
+    'Our time together is my favorite - Your love',
+    'You make my breakfast when I\'m sleepy in the morning - Penelope',
+    'You brush my hair when I\'m behind getting ready - Ramona',
+    'You make my coffee when I\'m busy at work - Your love'
 ]
+
+
 
 export default function App() {
     const [showCookie, setShowCookie] = useState(false)
@@ -32,7 +59,7 @@ export default function App() {
                 .catch((error) => {
                     console.log('error haptic feedback', error)
                 })
-        }, 10)
+        }, 250)
     }
 
     const stopHapticFeedback = () => {
@@ -115,16 +142,14 @@ const styles = StyleSheet.create({
     },
     caption: {
         fontSize: 18,
-        margin: 10,
-        padding: 10,
         textAlign: 'center',
         fontWeight: 'bold',
         color: '#666',
     },
     fortuneCookie: {
-        width: 120,
-        height: 120,
-        marginBottom: 20,
+        width: 96,
+        height: 96,
+        marginBottom: 10,
     },
     fortuneModal: {
         ...StyleSheet.absoluteFillObject,
@@ -133,7 +158,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     fortuneText: {
-        fontSize: 18,
+        fontSize: 14,
         color: '#000',
         backgroundColor: '#fff',
         textAlign: 'center',
@@ -144,8 +169,8 @@ const styles = StyleSheet.create({
         borderWidth: 3,
     },
     fortuneCookieBag: {
-        width: 420,
-        height: 420,
+        width: 400,
+        height: 400,
         marginBottom: 0,
     },
 });
